@@ -2,7 +2,7 @@ let w, h;
 const ctx = canvas.getContext("2d");
 const { sin, cos, PI, hypot, min, max } = Math;
 
-function spawn() {
+function generate() {
     const pts = many(333, () => {
         return {
             x: rnd(innerWidth),
@@ -71,72 +71,38 @@ function spawn() {
     }
 }
 
-const spiders = many(2, spawn)
-
-
-addEventListener("pointermove", (e) => {
-    spiders.forEach(spider => {
-        spider.follow(e.clientX, e.clientY)
+const greatPoints = many(2, generate)
+window.addEventListener("pointermove", (e) => {
+    greatPoints.forEach(point => {
+        point.follow(e.clientX, e.clientY)
     })
 });
 
-requestAnimationFrame(function anim(t) {
+requestAnimationFrame(function animate(t) {
     if (w !== innerWidth) w = canvas.width = innerWidth;
     if (h !== innerHeight) h = canvas.height = innerHeight;
     ctx.fillStyle = "#000";
     drawCircle(0, 0, w * 10);
     ctx.fillStyle = ctx.strokeStyle = "white";
     t/=1000
-    spiders.forEach(spider => spider.tick(t))
-    requestAnimationFrame(anim);
+    greatPoints.forEach(point => point.tick(t))
+    requestAnimationFrame(animate);
 });
-
-function recalc(X, Y) {
-    tx = X;
-    ty = Y;
-}
 
 function rnd(x = 1, dx = 0) {
     return Math.random() * x + dx;
 }
 
 function drawCircle(x, y, r, color) {
-    //console.log(x,y,r)
-    // ctx.fillStyle = "color";
+    // ctx.fillStyle = "color";you may play with it
     ctx.beginPath();
     ctx.ellipse(x, y, r, r, 0, 0, PI * 2);
     ctx.fill();
 }
 
-function drawLine(x0, y0, x1, y1) {
-    ctx.beginPath();
-    ctx.moveTo(x0, y0);
-
-    // many(100, (i) => {
-    //     i = (i + 1) / 100;
-    //     let x = lerp(x0, x1, i);
-    //     let y = lerp(y0, y1, i);
-    //     let k = noise(x/5+x0, y/5+y0) * 2;
-    //     // ctx.lineTo(x + k, y + k);
-    // });
-
-    ctx.stroke();
-}
 
 function many(n, f) {
     return [...Array(n)].map((_, i) => f(i));
-}
-
-function lerp(a, b, t) {
-    return a + (b - a) * t;
-}
-
-function noise(x, y, t = 101) {
-    let w0 = sin(0.3 * x + 1.4 * t + 2.0 + 
-                 2.5 * sin(0.4 * y + -1.3 * t + 1.0));
-    let w1 = sin(0.2 * y + 1.5 * t + 2.8 + 
-                 2.3 * sin(0.5 * x + -1.2 * t + 0.5));
-    return w0 + w1;
 }
 
 function pt(x,y){

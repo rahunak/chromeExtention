@@ -1,12 +1,10 @@
 {
-   "background": {
-      "service_worker": "sw.js"
-   },
+
    "chrome_url_overrides": {
       "newtab": "html/index.html"
    },
-   "description": "Space Spiders extension will help you keep track of the time while enjoying a soothing new tab design.",
-   "host_permissions": [ "*://spacespiders.net/*" ],
+   "description": "Your Space.",
+
    "icons": {
       // "128": "images/manifest-icons/128.png",
       // "16": "images/manifest-icons/16.png",
@@ -17,7 +15,7 @@
    "manifest_version": 3,
    "name": "Your Space",
    "permissions": [ "storage", "bookmarks" ],
-   "short_name": "SpaceSpiders",
+   "short_name": "YourSpace",
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.0.0"
+   "version": "v.1.0"
 }
