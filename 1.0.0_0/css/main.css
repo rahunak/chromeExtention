@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  font-family: 'League Gothic', sans-serif;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+canvas {
+  padding: 0;
+  margin: auto;
+  display: block;
+  /* width: 800px; */
+}
+.canvas {
+  width: 100vw;
+  height: 100vh;
+}
+.dark body {
+  background-color: #000;
+}
+.dark {
+  background-color: #fff;
+  color: #000000;
+}
+#themeIcon {
+  width: 50px;
+  height: 50px;
+  padding: 2px;
+}
+#settingsIcon {
+  width: 50px;
+  height: 50px;
+  padding: 2px;
+}
+#settingsWindow div:not(:first-child) {
+  margin-top: 1rem;
+}
+
+@keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* canvas {
+  animation: rotating 0s linear infinite;
+} */
